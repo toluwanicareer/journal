@@ -25,7 +25,7 @@ SECRET_KEY = '%807k$mrw9rn063v9ebgd%n^*y1730afqdv=cx)md96w5jz7hw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost:8000', 'tolucareer.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', 'journals.projecttopics.org']
 
 
 # Application definition
