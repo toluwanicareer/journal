@@ -1,0 +1,63 @@
+body {
+	background-color: #ebebeb;
+}
+
+@media screen and (min-width: 768px) {
+    .custom-class {
+        width: 90%; /* either % (e.g. 60%) or px (400px) */
+    }
+}
+
+.custom-class .modal-body {
+	background-color: #6C7A89;
+}
+
+.bg-blue {
+	background-color: #6C7A89;
+}
+
+.white {
+	color: white;
+}
+
+.bg-img {
+	background-image: url("/images/journaltocs_bgc.jpg");
+	position: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 100%;
+	min-width: 100%;
+	z-index: -1;
+	opacity: 0.5;
+}
+
+.dotted {
+	text-decoration: none;
+	border-bottom: 1px dotted #cfdde5;
+}
+
+.popover {
+	max-width: 600px;
+}
+
+.disabledTab {
+	pointer-events: none;
+}
+
+/* tables http://tablesorter.com/docs/ */
+table.tablesorter thead tr .header {
+	background-image: url(../images/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(../images/asc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(../images/desc.gif);
+}

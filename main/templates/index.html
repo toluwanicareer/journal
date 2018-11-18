@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Journals for Project Topic</title>
+	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://bootflat.github.io/bootflat/css/bootflat.css">
+	<link rel="stylesheet" type="text/css" href="/static/local.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs/dt-1.10.8,r-1.0.7/datatables.min.css"/>
+</head>
+<body>
+
+	<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+
+			<div class="panel">
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="{%  if not journal_page %}active{%  endif  %}"><a href="#search_tab" data-toggle="tab">Find a journal</a></li>
+                    {%  if journal_page %}
+                    <li class="active"><a href="#tocs_tab" data-toggle="tab">Latest articles</a></li>
+                    {%  endif  %}
+				</ul>
+				<div id="myTabContent" class="tab-content">
+
+					<div class="tab-pane {%  if not journal_page %}active {% endif %}" id="search_tab"><h3>Are you looking for the latest journal articles?</h3>
+
+<p>
+	Stay at the cutting edge of your research or subject area with the library's current awareness service. You can
+	now discover the latest papers coming directly from the publishers as soon as they
+	have been published online.
+</p>
+
+<br>
+
+<form role="form" name="search" action="/search" method="post">
+    {%  csrf_token  %}
+	<div class="form-group">
+		<div class="input-group form-search">
+			<input value="" type="text" class="form-control search-query" placeholder="Enter an ISSN number or keywords from the journal title" id="search" name="search">
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-primary" data-type="last">Search</button>
+			</span>
+		</div>
+	</div>
+</form>
+
+{%  if search_journal %}
+ <table id="search-result" class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				Journal title
+			</th>
+			<th>
+				Publisher
+			</th>
+			<th>
+				ISSN/eISSN
+			</th>
+			<!--th>
+				Rights
+			</th-->
+		</tr>
+	</thead>
+	<tbody>
+        {%for item in items %}
+            <tr>
+               <td><a href="/journal/{{ item.issn }}">{{ item.title }}</a></td>
+                <td>{{ item.publisher }}</td>
+                <td>{{ item.issn }}</td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<br>
+
+<hr class="dotted">
+
+<div class="row">
+	<div class="col-md-12">
+		<h4>Search tips</h4>
+		<p>
+			Put your keywords in quotation marks: " " to search for the <em>exact
+			title</em> (phrase) or add a single quotation mark: " at the beginning of the keywords
+			to search for something that <em>starts with</em> ...
+		</p>
+		<p>
+			Use * as wildcard for one or more
+			characters.
+		</p>
+	</div>
+
+</div>
+					</div>
+
+                <div class="tab-pane {% if journal_page %}active {%  endif %} in" id="tocs_tab">
+<br>
+
+<div class="row">
+	<div class="col-sm-8">
+		<h4>Aceh International Journal of Science and Technology</h4>
+	</div>
+	<div class="col-sm-4">
+		<div id="holdings">
+		</div>
+	</div>
+</div>
+{%  for item in items %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="altmetric-embed pull-right altmetric-hidden" data-badge-type="1" data-hide-no-mentions="true" data-badge-popover="left" data-doi="10.13170/aijst.7.1.8860" data-uuid="189c13a5-97e9-b4bb-b06e-d9b7523539fe"></div>		<strong><a class="dotted" href="{{ item.link }}">{{item.title}}</a></strong> / {{ item.creator }}<br>		In:{{ item.journal }}	</div>
+	<div class="panel-body">
+		<p class="text-justify">{{ item.description }}</p>
+		<p class="small">			<!--<a class="dotted" href="http://jurnal.unsyiah.ac.id/AIJST/article/view/8860">Read at publisher (direct link)</a>-->		</p>
+		<!-- AddThis Button BEGIN -->
+		<!--div class="addthis_toolbox addthis_default_style" addthis:url="http://jurnal.unsyiah.ac.id/AIJST/article/view/8860" addthis:title="Bioflocculation Activity in Harvesting System: A Biotechnology Approach for Microalgae Biomass">
+			<a class="addthis_button_facebook at300b" title="Facebook" href="#"><span class="at-icon-wrapper" style="background-color: rgb(59, 89, 152); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" role="img" aria-labelledby="at-svg-facebook-1" title="Facebook" alt="Facebook" style="width: 16px; height: 16px;" class="at-icon at-icon-facebook"><title id="at-svg-facebook-1">Facebook</title><g><path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z" fill-rule="evenodd"></path></g></svg></span></a>
+			<a class="addthis_button_twitter at300b" title="Twitter" href="#"><span class="at-icon-wrapper" style="background-color: rgb(29, 161, 242); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" role="img" aria-labelledby="at-svg-twitter-2" title="Twitter" alt="Twitter" style="width: 16px; height: 16px;" class="at-icon at-icon-twitter"><title id="at-svg-twitter-2">Twitter</title><g><path d="M27.996 10.116c-.81.36-1.68.602-2.592.71a4.526 4.526 0 0 0 1.984-2.496 9.037 9.037 0 0 1-2.866 1.095 4.513 4.513 0 0 0-7.69 4.116 12.81 12.81 0 0 1-9.3-4.715 4.49 4.49 0 0 0-.612 2.27 4.51 4.51 0 0 0 2.008 3.755 4.495 4.495 0 0 1-2.044-.564v.057a4.515 4.515 0 0 0 3.62 4.425 4.52 4.52 0 0 1-2.04.077 4.517 4.517 0 0 0 4.217 3.134 9.055 9.055 0 0 1-5.604 1.93A9.18 9.18 0 0 1 6 23.85a12.773 12.773 0 0 0 6.918 2.027c8.3 0 12.84-6.876 12.84-12.84 0-.195-.005-.39-.014-.583a9.172 9.172 0 0 0 2.252-2.336" fill-rule="evenodd"></path></g></svg></span></a>
+			<a class="addthis_button_linkedin at300b" target="_blank" title="LinkedIn" href="#"><span class="at-icon-wrapper" style="background-color: rgb(0, 119, 181); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" role="img" aria-labelledby="at-svg-linkedin-3" title="LinkedIn" alt="LinkedIn" style="width: 16px; height: 16px;" class="at-icon at-icon-linkedin"><title id="at-svg-linkedin-3">LinkedIn</title><g><path d="M26 25.963h-4.185v-6.55c0-1.56-.027-3.57-2.175-3.57-2.18 0-2.51 1.7-2.51 3.46v6.66h-4.182V12.495h4.012v1.84h.058c.558-1.058 1.924-2.174 3.96-2.174 4.24 0 5.022 2.79 5.022 6.417v7.386zM8.23 10.655a2.426 2.426 0 0 1 0-4.855 2.427 2.427 0 0 1 0 4.855zm-2.098 1.84h4.19v13.468h-4.19V12.495z" fill-rule="evenodd"></path></g></svg></span></a>
+			<a class="addthis_button_google_plusone_share at300b" target="_blank" title="Google+" href="#"><span class="at-icon-wrapper" style="background-color: rgb(220, 78, 65); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" role="img" aria-labelledby="at-svg-google_plusone_share-4" title="Google+" alt="Google+" style="width: 16px; height: 16px;" class="at-icon at-icon-google_plusone_share"><title id="at-svg-google_plusone_share-4">Google+</title><g><path d="M12 15v2.4h3.97c-.16 1.03-1.2 3.02-3.97 3.02-2.39 0-4.34-1.98-4.34-4.42s1.95-4.42 4.34-4.42c1.36 0 2.27.58 2.79 1.08l1.9-1.83C15.47 9.69 13.89 9 12 9c-3.87 0-7 3.13-7 7s3.13 7 7 7c4.04 0 6.72-2.84 6.72-6.84 0-.46-.05-.81-.11-1.16H12zm15 0h-2v-2h-2v2h-2v2h2v2h2v-2h2v-2z" fill-rule="evenodd"></path></g></svg></span></a>
+			<a class="addthis_button_compact at300m" href="#"><span class="at-icon-wrapper" style="background-color: rgb(255, 101, 80); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" role="img" aria-labelledby="at-svg-addthis-5" title="More" alt="More" style="width: 16px; height: 16px;" class="at-icon at-icon-addthis"><title id="at-svg-addthis-5">AddThis</title><g><path d="M18 14V8h-4v6H8v4h6v6h4v-6h6v-4h-6z" fill-rule="evenodd"></path></g></svg></span></a>
+			<a class="addthis_counter addthis_bubble_style" href="#" style="display: inline-block;"><a class="addthis_button_expanded" target="_blank" title="More" href="#">0</a><a class="atc_s addthis_button_compact">Share<span></span></a></a>
+		<div class="atclear"></div></div>--
+		<!-- AddThis Button END -->
+	</div>
+</div>
+                {%  endfor %}
+                  </div>
+
+
+
+
+				</div>
+			</div>
+		</div><!-- class:col-sm-12 -->
+	</div><!-- class:row -->
+</div>
+
+	<div class="container">
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs/dt-1.10.8,r-1.0.7/datatables.min.js"></script>
+
+
+
+        <script type="text/javascript">
+			$(document).ready(function()
+			{
+				// DataTables
+				$('#search-result').DataTable({
+					"oLanguage": {
+						"sSearch": "Filter results: "
+					}
+				});
+				// Focus on filter results
+				$('#search-result_filter input').focus();
+			});
+
+		</script>
+
+</body>
+
+</html>
