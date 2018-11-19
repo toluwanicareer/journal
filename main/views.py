@@ -44,6 +44,8 @@ class JournalDetail(View):
         params={'output':'articles', 'user':'projecttopics@recode.ng'}
         response=requests.get(base_url, params=urllib.parse.urlencode(params))
         root=ET.fromstring(response.content)
+        channel=root.find('{http://purl.org/rss/1.0/}channel')
+        title=channel.find('{http://purl.org/rss/1.0/}title').text
         items = []
         for item in root.findall('{http://purl.org/rss/1.0/}item'):
             item_dic = dict()
@@ -51,9 +53,12 @@ class JournalDetail(View):
             item_dic['link']=item.find('{http://purl.org/rss/1.0/}link').text
             item_dic['description']=item.find('{http://purl.org/rss/1.0/}description').text
             item_dic['journal']=item.find('{http://prismstandard.org/namespaces/1.2/basic/}PublicationName').text
-            item_dic['creator']=item.find('{http://purl.org/dc/elements/1.1/}creator').text
+            try:
+                item_dic['creator']=item.find('{http://purl.org/dc/elements/1.1/}creator').text
+            except AttributeError:
+                pass
             items.append(item_dic)
-        return render(request, 'index.html', {'items':items, 'journal_page':True})
+        return render(request, 'index.html', {'items':items, 'journal_page':True, 'journal_title':title})
 
 
 
