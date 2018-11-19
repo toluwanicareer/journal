@@ -9,8 +9,20 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs/dt-1.10.8,r-1.0.7/datatables.min.css"/>
     <link rel="shortcut icon" href="https://journals.projecttopics.org/images/icon.png">
     <meta name="description" content="This is the largest free collection of scholarly journals from more than 28,000 journals. Open Access and hybrid journals.">
+    <meta name="viewport" content="width=device-width">
+    <meta name="keywords" content="African journals, free journals, journals online, science journals, technical journals, journal articles, academic journals, science direct journals, sciencedirect journals, latest journals, biology journals, medical sciences journals, biochemistry journals, springer journals, free journal article website, academic articles, free journals for research">
 </head>
 <body>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129422744-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129422744-1');
+</script>
 
 	<div class="container">
 	<div class="row">
@@ -40,10 +52,19 @@
 	<div class="form-group">
 		<div class="input-group form-search">
 			<input value="" type="text" class="form-control search-query" placeholder="Enter an ISSN number or keywords from the journal title" id="search" name="search">
-			<span class="input-group-btn">
+
+            <span class="input-group-btn">
 				<button type="submit" class="btn btn-primary" data-type="last">Search</button>
 			</span>
 		</div>
+        {% for message in messages %}
+                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                  </div>
+                {% endfor %}
 	</div>
 </form>
 

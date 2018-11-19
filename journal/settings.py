@@ -38,7 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'webmaster_verification',
 ]
+
+#googlee294f3cea858d890
+
+WEBMASTER_VERIFICATION = {
+    'google': 'e294f3cea858d890',
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

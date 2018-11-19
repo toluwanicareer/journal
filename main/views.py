@@ -5,7 +5,8 @@ import requests
 import urllib
 import xml.etree.ElementTree as ET
 import pdb
-
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 class Home(TemplateView):
@@ -19,7 +20,13 @@ class SearchJournal(View):
         params={'user':'projecttopics@recode.ng'}
         search_url=search+query
         response=requests.get(search_url, params=urllib.parse.urlencode(params))
-        root=ET.fromstring(response.content)
+        #pdb.set_trace()
+        try:
+            root=ET.fromstring(response.content)
+        except:
+            messages.warning(request, 'No record was found for "'+query+'"' )
+            return HttpResponseRedirect('/')
+
         items=[]
         for item in root.findall('{http://purl.org/rss/1.0/}item'):
             item_dic = dict()
@@ -61,7 +68,8 @@ class JournalDetail(View):
         return render(request, 'index.html', {'items':items, 'journal_page':True, 'journal_title':title})
 
 
-
+def yandex(request):
+    return render(request, 'yandex_e338a2b8290dc352.html')
 
 
 
