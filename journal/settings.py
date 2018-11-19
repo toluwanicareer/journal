@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'webmaster_verification',
+    'django.contrib.sitemaps',
 ]
 
 #googlee294f3cea858d890

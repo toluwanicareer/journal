@@ -21,5 +21,6 @@ urlpatterns = [
     path('', views.Home.as_view() ),
     path('search', views.SearchJournal.as_view()),
     path('journal/<issn>', views.JournalDetail.as_view()),
-    path('yandex_e338a2b8290dc352.html', views.yandex)
+    path('yandex_e338a2b8290dc352.html', views.yandex),
+    path('sitemap.xml', views.sitemap),
 ]

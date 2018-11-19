@@ -71,6 +71,9 @@ class JournalDetail(View):
 def yandex(request):
     return render(request, 'yandex_e338a2b8290dc352.html')
 
+def sitemap(request):
+    return render(request, 'sitemap.xml')
+
 
 
 
