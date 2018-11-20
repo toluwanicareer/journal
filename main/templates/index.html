@@ -25,11 +25,11 @@
 </script>
 
 	<div class="container">
-    <div class="row" style="margin-bottom: 20px">
+    <div class="row" style="margin-bottom: 20px; margin-top: 30px">
 		<div class="text-center">
 			<a href="/">
 
-
+                <img class="" src="/static/logo.png" width="132px" height="32px">
 
 			</a>
 		</div>
@@ -47,77 +47,6 @@
                     {%  endif  %}
 				</ul>
 				<div id="myTabContent" class="tab-content">
-
-                <div class="tab-pane {%  if not journal_page %} {% endif %}" id="article_tab"><h3>Are you looking for the latest journal articles?</h3>
-
-<p>
-	Stay at the cutting edge of your research or subject area with the library's current awareness service. You can
-	now discover the latest papers coming directly from the publishers as soon as they
-	have been published online.
-</p>
-
-<br>
-
-<form role="form" name="search" action="/search-article" method="post">
-    {%  csrf_token  %}
-	<div class="form-group">
-		<div class="input-group form-search">
-			<input value="" type="text" class="form-control search-query" placeholder="Enter keywords from the article title" id="search" name="search">
-
-            <span class="input-group-btn">
-				<button type="submit" class="btn btn-primary" data-type="last">Search</button>
-			</span>
-		</div>
-        {% for message in messages %}
-                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    {{ message }}
-                  </div>
-                {% endfor %}
-	</div>
-</form>
-
-{%  if search_journal %}
- <table id="search-result" class="table table-striped">
-	<thead>
-		<tr>
-			<th>
-				Journal title
-			</th>
-			<th>
-				Publisher
-			</th>
-			<th>
-				ISSN/eISSN
-			</th>
-			<!--th>
-				Rights
-			</th-->
-		</tr>
-	</thead>
-	<tbody>
-        {%for item in items %}
-            <tr>
-               <td><a href="/journal/{{ item.issn }}">{{ item.title }}</a></td>
-                <td>{{ item.publisher }}</td>
-                <td>{{ item.issn }}</td>
-            </tr>
-
-        {% endfor %}
-    </tbody>
-</table>
-{% endif %}
-
-<br>
-
-<hr class="dotted">
-
-{% include 'story.html' %}
-					</div>
-
-
 
 					<div class="tab-pane {%  if not journal_page %}active {% endif %}" id="search_tab"><h3>Are you looking for the latest journal articles?</h3>
 
