@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/local.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs/dt-1.10.8,r-1.0.7/datatables.min.css"/>
-    <link rel="shortcut icon" href="https://journals.projecttopics.org/images/icon.png">
+    <link rel="shortcut icon" href="https://citation.projecttopics.org/images/icon.png">
     <meta name="description" content="This is the largest free collection of scholarly journals from more than 28,000 journals. Open Access and hybrid journals.">
     <meta name="viewport" content="width=device-width">
     <meta name="keywords" content="African journals, free journals, journals online, science journals, technical journals, journal articles, academic journals, science direct journals, sciencedirect journals, latest journals, biology journals, medical sciences journals, biochemistry journals, springer journals, free journal article website, academic articles, free journals for research">
@@ -25,6 +25,16 @@
 </script>
 
 	<div class="container">
+    <div class="row" style="margin-bottom: 20px">
+		<div class="text-center">
+			<a href="/">
+
+
+
+			</a>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-sm-12">
 
@@ -158,7 +168,7 @@
 	<div class="panel-heading">
 		<div class="altmetric-embed pull-right altmetric-hidden" data-badge-type="1" data-hide-no-mentions="true" data-badge-popover="left" data-doi="10.13170/aijst.7.1.8860" data-uuid="189c13a5-97e9-b4bb-b06e-d9b7523539fe"></div>		<strong><a class="dotted" href="{{ item.link }}">{{item.title}}</a></strong> / {{ item.creator }}<br>		In:{{ item.journal }}	</div>
 	<div class="panel-body">
-		<p class="text-justify">{{ item.description }}</p>
+		<p class="text-justify">{{ item.description|safe }}</p>
 		<p class="small">			<!--<a class="dotted" href="http://jurnal.unsyiah.ac.id/AIJST/article/view/8860">Read at publisher (direct link)</a>-->		</p>
 		<!-- AddThis Button BEGIN -->
 		<!--div class="addthis_toolbox addthis_default_style" addthis:url="http://jurnal.unsyiah.ac.id/AIJST/article/view/8860" addthis:title="Bioflocculation Activity in Harvesting System: A Biotechnology Approach for Microalgae Biomass">
@@ -175,6 +185,9 @@
     {% empty %}
     <h4 style="background-color:#e6e9ed; padding: 10px;">No Article Found</h4>
                 {%  endfor %}
+
+                <br>
+                <a href="/" class="btn btn-primary">Search again</a>
                   </div>
 
 

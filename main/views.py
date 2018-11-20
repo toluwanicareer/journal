@@ -50,7 +50,16 @@ class JournalDetail(View):
         base_url=' http://www.journaltocs.ac.uk/api/journals/'+issn
         params={'output':'articles', 'user':'projecttopics@recode.ng'}
         response=requests.get(base_url, params=urllib.parse.urlencode(params))
-        root=ET.fromstring(response.content)
+        #pdb.set_trace()
+        try:
+            root=ET.fromstring(response.content)
+        except ET.ParseError:
+            content=response.text
+            content=content.replace('<name>', ',').replace('</name>', '')
+            root=ET.fromstring(content)
+
+
+
         channel=root.find('{http://purl.org/rss/1.0/}channel')
         title=channel.find('{http://purl.org/rss/1.0/}title').text
         items = []
@@ -65,7 +74,7 @@ class JournalDetail(View):
             except AttributeError:
                 pass
             items.append(item_dic)
-        return render(request, 'index.html', {'items':items, 'journal_page':True, 'journal_title':title})
+        return render(request, 'index.html', {'items':items, 'journal_page':True, 'journal_title':title.replace('JournalTOCs API -', '')})
 
 
 def yandex(request):
@@ -75,5 +84,7 @@ def sitemap(request):
     return render(request, 'sitemap.xml')
 
 
+def robot(request):
+    return render(request, 'robots.txt')
 
 

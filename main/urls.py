@@ -23,4 +23,5 @@ urlpatterns = [
     path('journal/<issn>', views.JournalDetail.as_view()),
     path('yandex_e338a2b8290dc352.html', views.yandex),
     path('sitemap.xml', views.sitemap),
+    path('robots.txt', views.robot),
 ]
