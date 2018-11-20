@@ -35,8 +35,12 @@ class SearchJournal(View):
             description=item.find('{http://purl.org/rss/1.0/}description').text
             try:
                 item_dic['issn']=item.find('{http://prismstandard.org/namespaces/1.2/basic/}issn').text
-            except:
-                item_dic['issn'] = item.find('{http://prismstandard.org/namespaces/1.2/basic/}eIssn').text
+            except AttributeError:
+                try:
+                    item_dic['issn'] = item.find('{http://prismstandard.org/namespaces/1.2/basic/}eIssn').text
+                except AttributeError:
+                    messages.warning(request, 'No record was found for "' + query + '"')
+                    return HttpResponseRedirect('/')
             publicationName=item.find('{http://prismstandard.org/namespaces/1.2/basic/}publicationName').text
             item_dic['publisher']=item.find('{http://purl.org/dc/elements/1.1/}publisher').text
             items.append(item_dic)
@@ -47,7 +51,7 @@ class JournalDetail(View):
 
     def get(self,request, *args, **kwargs):
         issn=kwargs['issn']
-        base_url=' http://www.journaltocs.ac.uk/api/journals/'+issn
+        base_url='http://www.journaltocs.ac.uk/api/journals/'+issn
         params={'output':'articles', 'user':'projecttopics@recode.ng'}
         response=requests.get(base_url, params=urllib.parse.urlencode(params))
         #pdb.set_trace()
@@ -75,6 +79,10 @@ class JournalDetail(View):
                 pass
             items.append(item_dic)
         return render(request, 'index.html', {'items':items, 'journal_page':True, 'journal_title':title.replace('JournalTOCs API -', '')})
+
+
+
+
 
 
 def yandex(request):

@@ -41,11 +41,83 @@
 			<div class="panel">
 				<ul id="myTab" class="nav nav-tabs">
 					<li class="{%  if not journal_page %}active{%  endif  %}"><a href="#search_tab" data-toggle="tab">Find a journal</a></li>
+
                     {%  if journal_page %}
                     <li class="active"><a href="#tocs_tab" data-toggle="tab">Latest articles</a></li>
                     {%  endif  %}
 				</ul>
 				<div id="myTabContent" class="tab-content">
+
+                <div class="tab-pane {%  if not journal_page %} {% endif %}" id="article_tab"><h3>Are you looking for the latest journal articles?</h3>
+
+<p>
+	Stay at the cutting edge of your research or subject area with the library's current awareness service. You can
+	now discover the latest papers coming directly from the publishers as soon as they
+	have been published online.
+</p>
+
+<br>
+
+<form role="form" name="search" action="/search-article" method="post">
+    {%  csrf_token  %}
+	<div class="form-group">
+		<div class="input-group form-search">
+			<input value="" type="text" class="form-control search-query" placeholder="Enter keywords from the article title" id="search" name="search">
+
+            <span class="input-group-btn">
+				<button type="submit" class="btn btn-primary" data-type="last">Search</button>
+			</span>
+		</div>
+        {% for message in messages %}
+                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                  </div>
+                {% endfor %}
+	</div>
+</form>
+
+{%  if search_journal %}
+ <table id="search-result" class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				Journal title
+			</th>
+			<th>
+				Publisher
+			</th>
+			<th>
+				ISSN/eISSN
+			</th>
+			<!--th>
+				Rights
+			</th-->
+		</tr>
+	</thead>
+	<tbody>
+        {%for item in items %}
+            <tr>
+               <td><a href="/journal/{{ item.issn }}">{{ item.title }}</a></td>
+                <td>{{ item.publisher }}</td>
+                <td>{{ item.issn }}</td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<br>
+
+<hr class="dotted">
+
+{% include 'story.html' %}
+					</div>
+
+
 
 					<div class="tab-pane {%  if not journal_page %}active {% endif %}" id="search_tab"><h3>Are you looking for the latest journal articles?</h3>
 
@@ -113,42 +185,7 @@
 
 <hr class="dotted">
 
-<div class="row">
-	<div class="col-md-4">
-		<h4>Search tips</h4>
-		<p>
-			Enter keywords/ISSN number to search for the exact Journal/Article you are looking for.
-		</p>
-		<p>
-			Use * as wildcard for one or more
-			characters.
-		</p>
-	</div>
-	<div class="col-md-4">
-		<h4>Library holdings</h4>
-		The contents available here are from journals with public accessibility. The library provides current summary holdings for each subscription or hybrid journal. Many subscription, and hybrid journals especially, provide certain articles free of charge. It is not possible for us to identify them beforehand and they might appear as unavailable.
-        Most are free of charge for all journals available here.
-	</div>
-	<div class="col-md-4">
-		<h4>About</h4>
-		<p>
-
-
-            This is the largest free collection of scholarly journals from more than 28,000 journals including
-            both subscription based as well as Open Access and hybrid journals.
-            A leading global scientific, technical and medical academic resources website, providing researchers in
-            academia and scientific institutions with quality content through innovative informations.
-            It has one of the strongest research collections and archives,
-            as well as a comprehensive range of hybrid and open access journals.
-            This platform is part of <a class="dotted"
-                                        href="http://www.projecttopics.org">ProjectTopics.org</a>, a publisher that serves and supports academics globally.
-            We aim to advance discovery by publishing robust and insightful science, supporting the development
-            of new areas of research and making ideas and knowledge accessible for students around the world.
-
-		</p>
-	</div>
-
-</div>
+{% include 'story.html' %}
 					</div>
 
                 <div class="tab-pane {% if journal_page %}active {%  endif %} in" id="tocs_tab">
