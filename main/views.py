@@ -7,11 +7,17 @@ import xml.etree.ElementTree as ET
 import pdb
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+
+
 # Create your views here.
 
 class Home(TemplateView):
     template_name = 'index.html'
 
+@method_decorator(csrf_exempt, name='dispatch')
 class SearchJournal(View):
 
     def post(self, request, *args, **kwargs):
@@ -46,6 +52,9 @@ class SearchJournal(View):
             items.append(item_dic)
         #pdb.set_trace()
         return render(request, 'index.html', {'items':items, 'search_journal':True})
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponseRedirect('/')
 
 class JournalDetail(View):
 
