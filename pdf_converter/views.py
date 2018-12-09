@@ -21,5 +21,6 @@ class ConvertView(View):
         result=convertapi.convert('pdf', { 'File': 'https://journals.projecttopics.org/media/'+filename })
         name=filename.split('.')[0]
         result.file.save('media/pdf/'+name+'.pdf')
-        pdb.set_trace()
-        return JsonResponse({'js':'fg'})
+        uploaded_file_url = fs.url('pdf/'+name+'.pdf')
+        complete_url='https://journals.projecttopics.org'+uploaded_file_url
+        return JsonResponse({'file_url':complete_url})
