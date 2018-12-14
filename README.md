@@ -1,1 +1,4 @@
-"# journal" 
+
+This is the largest free collection of scholarly journals from more than 28,000 journals including both subscription based as well as Open Access and hybrid journals. A leading global scientific, technical and medical academic resources website, providing researchers in academia and scientific institutions with quality content through innovative informations. It has one of the strongest research collections and archives, as well as a comprehensive range of hybrid and open access journals. This platform is part of ProjectTopics.org, a publisher that serves and supports academics globally. We aim to advance discovery by publishing robust and insightful science, supporting the development of new areas of research and making ideas and knowledge accessible for students around the world.
+You can find the life version at https://journals.projecttopics.org/
+Built with python on django framework
