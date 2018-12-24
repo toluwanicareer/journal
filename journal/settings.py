@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'main',
     'pdf_converter',
     'webmaster_verification',
-    'django.contrib.sitemaps',
+    'django.contri'
+    'b.sitemaps',
+    'corsheaders',
 ]
 
 #googlee294f3cea858d890
@@ -58,7 +60,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL=True
 
 ROOT_URLCONF = 'journal.urls'
 
