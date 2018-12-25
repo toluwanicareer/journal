@@ -76,7 +76,7 @@ class ConvertView(View):
 
             # Make sure to delete the job from the server once it is done.
             #print(api_test.delete_job(json_job["jobID"]))
-            complete_url = 'https://journal.projecttopics.com' + uploaded_file_url #'http://localhost:8000' + uploaded_file_url
+            complete_url = 'https://journal.projecttopics.org' + uploaded_file_url #'http://localhost:8000' + uploaded_file_url
             return JsonResponse({'status':200, 'data':complete_url})
         except Exception as e:
             #print(api_test.delete_job(json_job["jobID"]))
