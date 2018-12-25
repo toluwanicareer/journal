@@ -41,10 +41,10 @@
     <entry key="WorkflowID">000000000681B7DC</entry>
 
     <!-- Input File Path (InputPath)-->
-    <entry key="InputPath">C:\Users\Dell\PycharmProjects\journal\media</entry>
+    <entry key="InputPath">/home/journal/media</entry>
 
     <!-- Output File Path (OutputPath)-->
-    <entry key="OutputPath">C:\Users\Dell\PycharmProjects\journal\media\pdf</entry>
+    <entry key="OutputPath">/home/journal/media/pdf</entry>
 
     <!-- Input File Name (FileName)-->
     <entry key="FileName">sample1.docx</entry>
