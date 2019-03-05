@@ -40,7 +40,8 @@ class SearchJournal(View):
             link=item.find('{http://purl.org/rss/1.0/}link').text
             description=item.find('{http://purl.org/rss/1.0/}description').text
             try:
-                item_dic['issn']=item.find('{http://prismstandard.org/namespaces/1.2/basic/}issn').text
+                item_dic['issn']=item.find('{http'
+                                           '://prismstandard.org/namespaces/1.2/basic/}issn').text
             except AttributeError:
                 try:
                     item_dic['issn'] = item.find('{http://prismstandard.org/namespaces/1.2/basic/}eIssn').text
