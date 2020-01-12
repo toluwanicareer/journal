@@ -17,6 +17,13 @@ from django.utils.decorators import method_decorator
 class Home(TemplateView):
     template_name = 'index.html'
 
+
+def clean_content(response):
+    content = response.text
+    index = content.find('<?xml')
+    content = content[index:]
+    return content
+
 @method_decorator(csrf_exempt, name='dispatch')
 class SearchJournal(View):
 
@@ -26,10 +33,10 @@ class SearchJournal(View):
         params={'user':'projecttopics@recode.ng'}
         search_url=search+query
         response=requests.get(search_url, params=urllib.parse.urlencode(params))
-        #pdb.set_trace()
         try:
-            root=ET.fromstring(response.content)
-        except:
+            content = clean_content(response)
+            root=ET.fromstring(content)
+        except KeyError:
             messages.warning(request, 'No record was found for "'+query+'"' )
             return HttpResponseRedirect('/')
 
@@ -65,10 +72,10 @@ class JournalDetail(View):
         params={'output':'articles', 'user':'projecttopics@recode.ng'}
         response=requests.get(base_url, params=urllib.parse.urlencode(params))
         #pdb.set_trace()
+        content = clean_content(response)
         try:
-            root=ET.fromstring(response.content)
+            root=ET.fromstring(content)
         except ET.ParseError:
-            content=response.text
             content=content.replace('<name>', ',').replace('</name>', '')
             root=ET.fromstring(content)
 
